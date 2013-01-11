@@ -1,0 +1,12 @@
+{
+  "name": "caf_profiler",
+  "description": "Performance profiling of CAF",
+  "version": "0.0.1",
+  "author": "Antonio Lain <antlai@cafjs.com>",
+  "dependencies": {
+      "caf_core" : ">= 0.0.1",
+      "metrics" : ">=0.1.6"
+  },
+  "main": "index",
+  "engines": { "node": ">= 0.4.1 " }
+}
