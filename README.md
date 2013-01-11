@@ -72,8 +72,7 @@ that will display an array:
          {
              "module": "caf_profiler/plug",
              "name": "profiler",
-             "description": "Performance profiling of CA requests\n Properties: <traceProfiler> {interval: <secs>}  enables queue length profiling\n
-",
+             "description": "Performance profiling of CA requests\n Properties: <traceProfiler> {interval: <secs>}  enables queue length profiling\n",
              "env" : {
                  "traceProfiler": {
                     "interval" : 0.01                   
