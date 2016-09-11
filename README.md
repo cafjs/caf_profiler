@@ -2,28 +2,28 @@
 
 Co-design permanent, active, stateful, reliable cloud proxies with your web app.
 
-See http://www.cafjs.com 
+See http://www.cafjs.com
 
-## CAF Lib Properties
+## CAF Lib Profiler
+[![Build Status](http://ci.cafjs.com/api/badges/cafjs/caf_profiler/status.svg)](http://ci.cafjs.com/cafjs/caf_profiler)
 
-This repository contains a CAF lib to profile the performance of your app.
-It measures latency, throughput and queue length for CA requests.
 
+Library to profile the performance of your app.
+
+It measures latency, throughput, and queue length for CA requests.
 
 ## API
 
-Performance data is accessible using a browser, not programmatically from
-within a CA method.
+Performance data is accessible using HTTP GET requests.
 
-If your app is called `helloworld`  the url to access latency and throughput info (using GET) is:
+If your app is called `foo-helloworld`  the url to access latency and throughput info (using GET) is:
 
-    http://helloworld.cafjs.com/stats
-    
-and you get something like:
+    https://foo-helloworld.cafjs.com/stats
 
-    {"ca_10_5_123_118":
-         {"inReq":{"type":"counter","count":32},
-          "outReq":{"type":"counter","count":32},
+and an example reply:
+
+    {"node_10_5_123_118:1000":
+         {"requests":{"type":"counter","count":32},
           "pending":{"type":"counter","count":0},
           "stats":{"type":"timer",
                "duration":{"type":"histogram","min":10.468857362866402,
@@ -44,50 +44,27 @@ and you get something like:
 
 where:
 
-- *InReq* # of requests received by that node.js process.
-- *OutReq* # of requests processed by that node.js process.
-- *pending* # of queued requests.
-- *duration* Latency time in msec to process your requests. See the *metrics* package for details.
+- *requests* Number of of messages received.
+- *pending* Number of requests queued.
+- *duration* Latency time in microsec to process your requests. See the *metrics* package for details.
 - *rate* Number of requests processed per second. Averages over a moving window (1min, 5min, 15 min) using exponential decay.  See the *metrics* package for details.
-
-
-To sample the number of pending messages, set `env.traceProfiler.interval` in framework.json  to the number of seconds between samples, and then:
-
-    http://helloworld.cafjs.com/stats/startProfiling
-
-and to finish profiling:
-
-    http://helloworld.cafjs.com/stats/stopProfiling
-    
-that will display an array:
-
-    [0,0,0,0,0,0,....]
-
 
 ## Configuration Example
 
 ### framework.json
 
-     "plugs" : [
          {
-             "module": "caf_profiler/plug",
+             "module": "caf_profiler#plug",
              "name": "profiler",
-             "description": "Performance profiling of CA requests\n Properties: <traceProfiler> {interval: <secs>}  enables queue length profiling\n",
+             "description": "Performance profiling of CA requests\n Properties:\n",
              "env" : {
-                 "traceProfiler": {
-                    "interval" : 0.01                   
-                 } 
               }
             }
           }
           ...
       ]
-  
+
 
 ### ca.json
 
   None
-    
-        
-            
- 
