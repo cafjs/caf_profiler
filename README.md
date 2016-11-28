@@ -12,15 +12,11 @@ Library to profile the performance of your app.
 
 It measures latency, throughput, and queue length for CA requests.
 
-## API
+For an app called `root-helloworld` access performance data with:
 
-Performance data is accessible using HTTP GET requests.
+    curl https://root-helloworld.cafjs.com/stats
 
-If your app is called `foo-helloworld`  the url to access latency and throughput info (using GET) is:
-
-    https://foo-helloworld.cafjs.com/stats
-
-and an example reply:
+and an example reply is:
 
     {"node_10_5_123_118:1000":
          {"requests":{"type":"counter","count":32},
@@ -44,25 +40,16 @@ and an example reply:
 
 where:
 
-- *requests* Number of of messages received.
-- *pending* Number of requests queued.
-- *duration* Latency time in microsec to process your requests. See the *metrics* package for details.
-- *rate* Number of requests processed per second. Averages over a moving window (1min, 5min, 15 min) using exponential decay.  See the *metrics* package for details.
+* *requests* Number of of messages received.
+* *pending* Number of requests queued.
+* *duration* Latency time (in microseconds) to process your requests. See the `metrics` package for details.
+* *rate* Number of requests processed per second. Averages over a moving window (1min, 5min, 15 min) using exponential decay.  See the `metrics` package for details.
 
 ## Configuration Example
 
 ### framework.json
 
-         {
-             "module": "caf_profiler#plug",
-             "name": "profiler",
-             "description": "Performance profiling of CA requests\n Properties:\n",
-             "env" : {
-              }
-            }
-          }
-          ...
-      ]
+ See {@link module:caf_profiler/plug_profiler}
 
 
 ### ca.json
