@@ -5,7 +5,7 @@ Co-design permanent, active, stateful, reliable cloud proxies with your web app.
 See http://www.cafjs.com
 
 ## CAF Lib Profiler
-[![Build Status](http://ci.cafjs.com/api/badges/cafjs/caf_profiler/status.svg)](http://ci.cafjs.com/cafjs/caf_profiler)
+[![Build Status](https://travis-ci.org/cafjs/caf_profiler.svg?branch=master)](https://travis-ci.org/cafjs/caf_profiler)
 
 
 Library to profile the performance of your app.
