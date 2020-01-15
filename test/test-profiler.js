@@ -27,35 +27,34 @@ process.on('uncaughtException', function (err) {
 });
 
 module.exports = {
-    helloworld: function (test) {
+    helloworld: async function (test) {
         test.expect(4);
-        profiler.newInstance({_: {$: {} }}, {
+        const [err, prof] = await profiler.newInstance({_: {$: {} }}, {
             "module": "caf_profiler#plug", "name": "profiler", "env" : {}
-        }, function(err, prof) {
-            console.log(err);
-            test.ok(!err);
-            var f = function(i, start) {
-                if (i < 50) {
-                    if (start) {
-                        prof.msgEnd(start);
-                        f(i+1, null);
-                    } else {
-                        start = prof.msgBegin();
-                        setTimeout(function() {
-                            f(i, start);
-                        }, 100);
-                    }
-                } else {
-                    var report = prof.report();
-                    var rep = report.node_unknown;
-                    test.equals(rep.requests.count, 50);
-                    test.equals(rep.pending.count, 0);
-                    console.log(JSON.stringify(report));
-                    test.ok(rep.stats.duration.sum > 50*100*1000);
-                    test.done();
-                }
-            };
-            f(0, null);
         });
+        console.log(err);
+        test.ok(!err);
+        var f = function(i, start) {
+            if (i < 50) {
+                if (start) {
+                    prof.msgEnd(start);
+                    f(i+1, null);
+                } else {
+                    start = prof.msgBegin();
+                    setTimeout(function() {
+                        f(i, start);
+                    }, 100);
+                }
+            } else {
+                var report = prof.report();
+                var rep = report.node_unknown;
+                test.equals(rep.requests.count, 50);
+                test.equals(rep.pending.count, 0);
+                console.log(JSON.stringify(report));
+                test.ok(rep.stats.duration.sum > 50*100*1000);
+                test.done();
+            }
+        };
+        f(0, null);
     }
 };
