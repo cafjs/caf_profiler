@@ -14,10 +14,13 @@ It measures latency, throughput, and queue length for CA requests.
 
 For an app called `root-helloworld` access performance data with:
 
+```
     curl https://root-helloworld.cafjs.com/stats
+```
 
 and an example reply is:
 
+```
     {"node_10_5_123_118:1000":
          {"requests":{"type":"counter","count":32},
           "pending":{"type":"counter","count":0},
@@ -37,6 +40,7 @@ and an example reply is:
           }
          }
     }
+```
 
 where:
 
