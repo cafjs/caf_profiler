@@ -1,8 +1,8 @@
 # Caf.js
 
-Co-design permanent, active, stateful, reliable cloud proxies with your web app.
+Co-design cloud assistants with your web app and IoT devices.
 
-See http://www.cafjs.com
+See https://www.cafjs.com
 
 ## Profiler Library
 [![Build Status](https://travis-ci.org/cafjs/caf_profiler.svg?branch=master)](https://travis-ci.org/cafjs/caf_profiler)
