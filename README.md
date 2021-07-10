@@ -5,8 +5,8 @@ Co-design cloud assistants with your web app and IoT devices.
 See https://www.cafjs.com
 
 ## Profiler Library
-[![Build Status](https://travis-ci.org/cafjs/caf_profiler.svg?branch=master)](https://travis-ci.org/cafjs/caf_profiler)
 
+[![Build Status](https://github.com/cafjs/caf_profiler/actions/workflows/push.yml/badge.svg)](https://github.com/cafjs/caf_profiler/actions/workflows/push.yml)
 
 Library to profile the performance of your app.
 
